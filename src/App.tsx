@@ -20,8 +20,23 @@ type Figure = {
   accent: string
   tags: string[]
   portraitWords: Word[]
-  timeline: { year: string; title: string; detail: string }[]
 }
+
+type Theme = {
+  id: string
+  no: string
+  title: string
+  subtitle: string
+}
+
+const themes: Theme[] = [
+  { id: 'archive-dark', no: '01', title: 'Archive Dark', subtitle: '黑色档案馆 / 戏剧光 / 展签' },
+  { id: 'paper-book', no: '02', title: 'Paper Book', subtitle: '古书 / 图录 / 编排' },
+  { id: 'poster-wall', no: '03', title: 'Poster Wall', subtitle: '海报墙 / 大字 / 艺术展' },
+  { id: 'signal-lab', no: '04', title: 'Signal Lab', subtitle: '信号实验室 / 扫描 / 数据感' },
+  { id: 'gallery-light', no: '05', title: 'Gallery Light', subtitle: '浅色美术馆 / 留白 / 雕塑' },
+  { id: 'ink-scroll', no: '06', title: 'Ink Scroll', subtitle: '长卷 / 水墨 / 东方叙事' },
+]
 
 const figures: Figure[] = [
   {
@@ -29,23 +44,23 @@ const figures: Figure[] = [
     name: '苏轼',
     dynasty: '北宋',
     years: '1037 — 1101',
-    subtitle: '被贬谪、月色、江流与旷达共同塑造出来的人。',
+    subtitle: '被月色、江流、贬谪与旷达共同塑造出来的人。',
     quote: '回首向来萧瑟处，归去，也无风雨也无晴。',
     summary:
-      '这个站点不打算把历史人物做成普通卡片，而是把构成他形象的文字本身拿来塑形。苏轼很适合作为第一位人物，因为关于他的描述天然带有温度、景象、挫折与自我修复能力。',
+      '如果这个站点要成立，人物不能只是“内容入口”，而要先成为一个视觉主体。苏轼的词语气质天然适合聚合成像：明月、江流、黄州、赤壁、东坡，这些词本身就带空间与温度。',
     curator:
-      '真正值得呈现的，不是苏轼的“成功”，而是他如何把不断受挫的人生重新写成一种更辽阔的活法。',
+      '他最迷人的不是天赋，而是把人生的下坠重新组织成一种可以被后人反复使用的精神尺度。',
     accent: '#d3a164',
     tags: ['赤壁', '黄州', '东坡', '诗词', '书画'],
     portraitWords: [
-      { text: '东坡', x: 50, y: 13, weight: 'strong' },
-      { text: '旷达', x: 35, y: 19, weight: 'mid' },
+      { text: '东坡', x: 50, y: 14, weight: 'strong' },
+      { text: '旷达', x: 34, y: 20, weight: 'mid' },
       { text: '赤壁', x: 66, y: 20, weight: 'mid' },
-      { text: '明月', x: 43, y: 29, weight: 'soft' },
-      { text: '江流', x: 61, y: 31, weight: 'soft' },
-      { text: '黄州', x: 28, y: 36, weight: 'soft' },
+      { text: '明月', x: 42, y: 28, weight: 'soft' },
+      { text: '江流', x: 62, y: 31, weight: 'soft' },
+      { text: '黄州', x: 27, y: 37, weight: 'soft' },
       { text: '贬谪', x: 53, y: 38, weight: 'mid' },
-      { text: '诗词', x: 71, y: 38, weight: 'mid' },
+      { text: '诗词', x: 71, y: 39, weight: 'mid' },
       { text: '人生如逆旅', x: 31, y: 49, weight: 'soft' },
       { text: '豁达', x: 51, y: 51, weight: 'strong' },
       { text: '风骨', x: 69, y: 53, weight: 'mid' },
@@ -53,30 +68,23 @@ const figures: Figure[] = [
       { text: '自嘲', x: 58, y: 66, weight: 'soft' },
       { text: '千古', x: 50, y: 80, weight: 'mid' },
     ],
-    timeline: [
-      { year: '1037', title: '生于眉山', detail: '后来成为北宋最重要的文学与文化人物之一。' },
-      { year: '1079', title: '乌台诗案', detail: '政治风波之后，苏轼开始慢慢转化为“东坡”。' },
-      { year: '1082', title: '赤壁书写', detail: '时间、江流与命运在他的文字里被重新组织。' },
-      { year: '1094', title: '再遭远谪', detail: '人生继续下沉，但文字、审美与气度没有塌。' },
-      { year: '1101', title: '北归病逝', detail: '苏轼结束了，东坡作为一种人格持续留下。' },
-    ],
   },
   {
     id: 'wuzetian',
     name: '武则天',
     dynasty: '武周',
     years: '624 — 705',
-    subtitle: '被制度、诏令、史官与争议共同塑造出来的人。',
+    subtitle: '被诏令、秩序、争议与史官同时塑造出来的人。',
     quote: '她的形象，常常比她本人更像一场叙述斗争。',
     summary:
-      '武则天不该只被当作一个传奇标签。这个人物最适合被做成“多种评价互相拉扯”的文字人像：功绩、权力、秩序、防御、污名与改制同时在场。',
+      '武则天最适合做成“冲突型”的文字人像。这个人物身上的关键词不是顺滑流动的，而应该彼此牵扯：权力、改制、统治、恐惧、革新、形象。',
     curator:
-      '对她最好的呈现，不是先下结论，而是让不同叙述同时悬在她的轮廓里。',
+      '她不是只能被崇拜或贬斥。更准确的方式，是让多种叙述同时悬停在她的轮廓里。',
     accent: '#c46b76',
     tags: ['女皇', '诏令', '改制', '史官', '神都'],
     portraitWords: [
-      { text: '女皇', x: 50, y: 13, weight: 'strong' },
-      { text: '权力', x: 34, y: 19, weight: 'mid' },
+      { text: '女皇', x: 50, y: 14, weight: 'strong' },
+      { text: '权力', x: 34, y: 20, weight: 'mid' },
       { text: '诏令', x: 66, y: 20, weight: 'soft' },
       { text: '秩序', x: 50, y: 30, weight: 'strong' },
       { text: '改制', x: 28, y: 36, weight: 'soft' },
@@ -88,13 +96,6 @@ const figures: Figure[] = [
       { text: '帝国', x: 71, y: 59, weight: 'soft' },
       { text: '形象', x: 49, y: 80, weight: 'mid' },
     ],
-    timeline: [
-      { year: '624', title: '出生', detail: '后来进入唐宫，并逐步进入权力核心。' },
-      { year: '655', title: '立后', detail: '宫廷权力结构从此出现根本变化。' },
-      { year: '690', title: '称帝', detail: '建立武周，成为中国历史上唯一正统女皇帝。' },
-      { year: '690-705', title: '统治时期', detail: '制度、用人与国家秩序层面留下可见影响。' },
-      { year: '705', title: '退位', detail: '政治结束了，但关于她的叙述战争没有结束。' },
-    ],
   },
   {
     id: 'caocao',
@@ -104,13 +105,13 @@ const figures: Figure[] = [
     subtitle: '被雄心、军政、诗歌与戏剧脸谱共同塑造出来的人。',
     quote: '对酒当歌，人生几何。',
     summary:
-      '曹操最适合做“标签碰撞型”的文字人像。英雄、权臣、诗人、奸雄、制度建设者、战争指挥者，这些词必须一起出现，他才会重新复杂起来。',
+      '曹操最适合做成“多重标签碰撞”的人像。英雄、权臣、诗人、奸雄、军事家，这些词不该互相覆盖，而该一起保留。',
     curator:
-      '这个人物不该被一个词盖住。他的价值，恰恰在于多个彼此冲突的评价可以同时成立。',
+      '这个人物的复杂性，不在于你选哪一个判断，而在于多个互相冲突的判断都成立。',
     accent: '#7a8fda',
     tags: ['魏武', '短歌行', '官渡', '军政', '奸雄'],
     portraitWords: [
-      { text: '魏武', x: 50, y: 13, weight: 'strong' },
+      { text: '魏武', x: 50, y: 14, weight: 'strong' },
       { text: '挟天子', x: 34, y: 20, weight: 'soft' },
       { text: '诗人', x: 66, y: 20, weight: 'soft' },
       { text: '雄才', x: 49, y: 30, weight: 'strong' },
@@ -123,151 +124,205 @@ const figures: Figure[] = [
       { text: '多面', x: 58, y: 65, weight: 'mid' },
       { text: '天下', x: 50, y: 80, weight: 'soft' },
     ],
-    timeline: [
-      { year: '155', title: '出生', detail: '后来成为东汉末最关键的政治军事人物之一。' },
-      { year: '196', title: '迎献帝都许', detail: '政治主动权被迅速握住。' },
-      { year: '200', title: '官渡之战', detail: '北方格局逐渐定型。' },
-      { year: '208', title: '赤壁失利', detail: '遭遇重大挫折，但并未失去根本盘面。' },
-      { year: '220', title: '病逝', detail: '曹魏政权基础此时已经形成。' },
-    ],
   },
 ]
 
-function Portrait({ figure }: { figure: Figure }) {
+function Portrait({ figure, className = '' }: { figure: Figure; className?: string }) {
   return (
-    <div className="portrait-shell" style={{ ['--accent' as string]: figure.accent }}>
-      <div className="portrait-glow" />
-      <div className="portrait-frame" />
-      <div className="portrait-shape">
-        {figure.portraitWords.map((word, index) => (
-          <span
-            key={`${figure.id}-${word.text}-${index}`}
-            className={`portrait-word ${word.weight ?? 'mid'}`}
-            style={{ left: `${word.x}%`, top: `${word.y}%` }}
-          >
-            {word.text}
-          </span>
-        ))}
-      </div>
+    <div className={`portrait ${className}`} style={{ ['--accent' as string]: figure.accent } as React.CSSProperties}>
+      {figure.portraitWords.map((word, index) => (
+        <span
+          key={`${figure.id}-${word.text}-${index}`}
+          className={`portrait-word ${word.weight ?? 'mid'}`}
+          style={{ left: `${word.x}%`, top: `${word.y}%` }}
+        >
+          {word.text}
+        </span>
+      ))}
     </div>
   )
 }
 
-function App() {
-  const [selectedId, setSelectedId] = useState(figures[0].id)
-  const figure = useMemo(() => figures.find((item) => item.id === selectedId) ?? figures[0], [selectedId])
-
+function ThemeTabs({ current, onChange }: { current: string; onChange: (id: string) => void }) {
   return (
-    <main className="site-shell" style={{ ['--accent' as string]: figure.accent }}>
-      <div className="bg-grid" aria-hidden="true" />
-      <div className="bg-noise" aria-hidden="true" />
+    <div className="theme-tabs">
+      {themes.map((theme) => (
+        <button key={theme.id} type="button" className={`theme-tab ${current === theme.id ? 'active' : ''}`} onClick={() => onChange(theme.id)}>
+          <span>{theme.no}</span>
+          <strong>{theme.title}</strong>
+          <small>{theme.subtitle}</small>
+        </button>
+      ))}
+    </div>
+  )
+}
 
-      <header className="topbar">
-        <div className="brand-block">
-          <p className="sys-label">Archive / Portrait / Study</p>
-          <a className="brand" href="#hero">History Text Portraits</a>
-        </div>
-        <nav className="topnav">
-          <a href="#hero">Hero</a>
-          <a href="#dossier">Dossier</a>
-          <a href="#timeline">Timeline</a>
-        </nav>
-      </header>
+function FigureTabs({ current, onChange }: { current: string; onChange: (id: string) => void }) {
+  return (
+    <div className="figure-tabs">
+      {figures.map((figure) => (
+        <button
+          key={figure.id}
+          type="button"
+          className={`figure-tab ${current === figure.id ? 'active' : ''}`}
+          style={{ ['--accent' as string]: figure.accent } as React.CSSProperties}
+          onClick={() => onChange(figure.id)}
+        >
+          <span>{figure.dynasty}</span>
+          <strong>{figure.name}</strong>
+        </button>
+      ))}
+    </div>
+  )
+}
 
-      <section id="hero" className="hero-section">
-        <div className="hero-frame" />
-
-        <div className="hero-copy">
-          <div className="tagline-gears">
-            <span className="active">Text-built</span>
-            <span>Historical</span>
-            <span>Readable object</span>
-          </div>
-
-          <h1>把历史人物做成一尊由史料文字聚合而成的可阅读人像。</h1>
-          <p className="hero-desc">
-            这次我不再做一堆方向给你挑，也不沿着前面那些版式修补。我直接从 reference 里抽可用细节重新拼：
-            深背景中的局部光、编辑感 serif 标题、mono 系统标签、极细框线、慢动效、策展式信息排布。
-          </p>
-        </div>
-
-        <div className="hero-main-grid">
-          <aside className="selector-panel">
-            <p className="sys-label">Figure selector</p>
-            <div className="selector-list">
-              {figures.map((item) => (
-                <button
-                  key={item.id}
-                  type="button"
-                  className={`selector-item ${item.id === figure.id ? 'active' : ''}`}
-                  style={{ ['--accent' as string]: item.accent }}
-                  onClick={() => setSelectedId(item.id)}
-                >
-                  <span className="selector-meta">{item.dynasty}</span>
-                  <strong>{item.name}</strong>
-                  <p>{item.subtitle}</p>
-                </button>
-              ))}
-            </div>
-          </aside>
-
-          <div className="portrait-panel">
-            <Portrait figure={figure} />
-          </div>
-        </div>
-      </section>
-
-      <section id="dossier" className="dossier-section">
-        <aside className="dossier-sticky">
-          <p className="sys-label">Specimen dossier</p>
-          <h2>{figure.name}</h2>
-          <p className="dossier-years">
-            {figure.dynasty} · {figure.years}
-          </p>
+function ArchiveDark({ figure }: { figure: Figure }) {
+  return (
+    <section className="design design-archive-dark" style={{ ['--accent' as string]: figure.accent } as React.CSSProperties}>
+      <div className="design-grid two-col">
+        <div className="copy-panel">
+          <p className="eyebrow">Archive dark</p>
+          <h2>黑色档案馆里的唯一主角</h2>
+          <p>{figure.summary}</p>
           <blockquote>{figure.quote}</blockquote>
-          <div className="chip-row">
-            {figure.tags.map((tag) => (
-              <span key={tag}>{tag}</span>
-            ))}
+        </div>
+        <div className="hero-object-panel">
+          <Portrait figure={figure} />
+        </div>
+      </div>
+      <div className="info-row two-blocks">
+        <article><p className="eyebrow">Curator note</p><p>{figure.curator}</p></article>
+        <article><p className="eyebrow">Keywords</p><div className="tag-list">{figure.tags.map((tag) => <span key={tag}>{tag}</span>)}</div></article>
+      </div>
+    </section>
+  )
+}
+
+function PaperBook({ figure }: { figure: Figure }) {
+  return (
+    <section className="design design-paper-book" style={{ ['--accent' as string]: figure.accent } as React.CSSProperties}>
+      <div className="paper-book-frame">
+        <header className="paper-header">
+          <div>
+            <p className="eyebrow dark">Paper book</p>
+            <h2>像一本摊开的历史图录</h2>
           </div>
-        </aside>
-
-        <div className="dossier-log">
-          <article className="log-entry emphasis">
-            <span className="log-time">01 / WHY THIS FIGURE</span>
+          <div className="paper-meta">{figure.dynasty} · {figure.years}</div>
+        </header>
+        <div className="paper-book-grid">
+          <div className="paper-portrait-box"><Portrait figure={figure} className="compact" /></div>
+          <div className="paper-reading-box">
+            <h3>{figure.name}</h3>
+            <p className="paper-subtitle">{figure.subtitle}</p>
             <p>{figure.summary}</p>
-          </article>
-          <article className="log-entry resolution">
-            <span className="log-time">02 / CURATOR NOTE</span>
-            <p>{figure.curator}</p>
-          </article>
-          <article className="log-entry">
-            <span className="log-time">03 / FORMAT IDEA</span>
-            <p>人物不是先给出画像，再补文字；而是让文字先成为画像，之后再回流成一本可阅读的历史书。</p>
-          </article>
+            <blockquote>{figure.quote}</blockquote>
+          </div>
         </div>
-      </section>
+      </div>
+    </section>
+  )
+}
 
-      <section id="timeline" className="timeline-section">
-        <div className="section-header">
-          <p className="sys-label">Timeline</p>
-          <h2>把人物从标签里拉出来，重新放回时间里。</h2>
+function PosterWall({ figure }: { figure: Figure }) {
+  return (
+    <section className="design design-poster-wall" style={{ ['--accent' as string]: figure.accent } as React.CSSProperties}>
+      <div className="poster-topline">TEXT · HISTORY · FORM · PORTRAIT</div>
+      <div className="poster-wall-grid">
+        <div className="poster-main-title">
+          <h2>{figure.name}</h2>
+          <p>{figure.subtitle}</p>
         </div>
+        <div className="poster-portrait"><Portrait figure={figure} className="compact" /></div>
+        <div className="poster-quote"><blockquote>{figure.quote}</blockquote></div>
+        <div className="poster-note"><p>{figure.curator}</p></div>
+      </div>
+    </section>
+  )
+}
 
-        <div className="timeline-list">
-          {figure.timeline.map((item) => (
-            <article key={`${figure.id}-${item.year}`} className="timeline-card">
-              <div className="timeline-date">
-                <span className="date-year">{item.year}</span>
-              </div>
-              <div className="timeline-body">
-                <h3>{item.title}</h3>
-                <p>{item.detail}</p>
-              </div>
-            </article>
+function SignalLab({ figure }: { figure: Figure }) {
+  return (
+    <section className="design design-signal-lab" style={{ ['--accent' as string]: figure.accent } as React.CSSProperties}>
+      <div className="scan-line" />
+      <div className="lab-grid">
+        <div className="lab-panel lab-copy">
+          <p className="eyebrow">Signal lab</p>
+          <h2>把人物当成一组持续被扫描的叙述信号</h2>
+          <p>{figure.summary}</p>
+        </div>
+        <div className="lab-panel lab-portrait"><Portrait figure={figure} className="compact" /></div>
+        <div className="lab-panel lab-data">
+          {figure.tags.map((tag, index) => (
+            <div key={tag} className="lab-data-row"><span>{String(index + 1).padStart(2, '0')}</span><p>{tag}</p></div>
           ))}
         </div>
-      </section>
+      </div>
+    </section>
+  )
+}
+
+function GalleryLight({ figure }: { figure: Figure }) {
+  return (
+    <section className="design design-gallery-light" style={{ ['--accent' as string]: figure.accent } as React.CSSProperties}>
+      <div className="gallery-light-grid">
+        <div className="light-copy">
+          <p className="eyebrow dark">Gallery light</p>
+          <h2>更像美术馆里的浅色雕塑厅</h2>
+          <p>{figure.summary}</p>
+          <div className="tag-list dark">{figure.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>
+        </div>
+        <div className="light-object"><Portrait figure={figure} className="light" /></div>
+      </div>
+    </section>
+  )
+}
+
+function InkScroll({ figure }: { figure: Figure }) {
+  return (
+    <section className="design design-ink-scroll" style={{ ['--accent' as string]: figure.accent } as React.CSSProperties}>
+      <div className="scroll-head">
+        <p className="eyebrow dark">Ink scroll</p>
+        <h2>像被慢慢展开的东方长卷</h2>
+      </div>
+      <div className="scroll-layout">
+        <div className="scroll-cell intro">
+          <h3>{figure.name}</h3>
+          <p>{figure.subtitle}</p>
+        </div>
+        <div className="scroll-cell center"><Portrait figure={figure} className="compact ink" /></div>
+        <div className="scroll-cell note">
+          <p>{figure.curator}</p>
+          <blockquote>{figure.quote}</blockquote>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function App() {
+  const [themeId, setThemeId] = useState(themes[0].id)
+  const [figureId, setFigureId] = useState(figures[0].id)
+  const figure = useMemo(() => figures.find((item) => item.id === figureId) ?? figures[0], [figureId])
+
+  return (
+    <main className="app-shell" style={{ ['--accent' as string]: figure.accent } as React.CSSProperties}>
+      <header className="page-header">
+        <div>
+          <p className="page-kicker">History Text Portraits</p>
+          <h1>6 套完全不同的首页设计</h1>
+          <p className="page-intro">这次不再只给一套。顶部可以切换 6 种方向：黑色档案馆、古书图录、海报墙、信号实验室、浅色美术馆、东方长卷。</p>
+        </div>
+      </header>
+
+      <ThemeTabs current={themeId} onChange={setThemeId} />
+      <FigureTabs current={figureId} onChange={setFigureId} />
+
+      {themeId === 'archive-dark' && <ArchiveDark figure={figure} />}
+      {themeId === 'paper-book' && <PaperBook figure={figure} />}
+      {themeId === 'poster-wall' && <PosterWall figure={figure} />}
+      {themeId === 'signal-lab' && <SignalLab figure={figure} />}
+      {themeId === 'gallery-light' && <GalleryLight figure={figure} />}
+      {themeId === 'ink-scroll' && <InkScroll figure={figure} />}
     </main>
   )
 }
