@@ -1,0 +1,6 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "history-text-portraits",
+  "compatibility_date": "2026-04-09",
+  "pages_build_output_dir": "./dist"
+}

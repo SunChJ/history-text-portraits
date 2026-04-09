@@ -37,3 +37,11 @@ npm run dev
 ```bash
 npm run build
 ```
+
+## 部署到 Cloudflare Pages
+
+```bash
+npm run cf:deploy:prod
+```
+
+首次部署会创建 / 复用 Cloudflare Pages 项目 `history-text-portraits`，并把 `dist/` 发布到生产环境。
