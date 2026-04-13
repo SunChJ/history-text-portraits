@@ -491,17 +491,76 @@ function App() {
   return (
     <main ref={appRef} className="app-shell" style={{ ['--accent' as string]: figure.accent } as CSSProperties}>
       <header className="page-header">
-        <p className="page-kicker">digital museum of history / text portraits archive</p>
-        <h1>历史，被重新点亮。</h1>
+        <p className="page-kicker">history text portraits / live cultural showcase</p>
+        <h1>把历史文本变成一眼就能抓住人的实时人物展演。</h1>
         <p className="page-intro">
-          这不是一个把人物排成卡片的网页，而是一座尝试用文本、算法与交互重新组织历史记忆的数字展馆。
-          我们关心的不是“像不像一张插图”，而是史料如何在屏幕里重新聚合成一种可被观看的面容。
+          这不该只是一个“设计练习站”。它应该像一个可投放、可传播、可商业化的文化科技样板：
+          用实时图形把人物、文本与叙事做成能吸引用户、合作方与投资人的 showcase。
         </p>
+        <div className="hero-actions">
+          <a href="#demo">查看实时演示</a>
+          <a href="#thesis" className="ghost">为什么它值得投</a>
+        </div>
       </header>
 
-      <section className="control-rail">
+      <section className="signal-strip">
+        <article className="signal-card">
+          <span className="meta-label">product signal</span>
+          <strong>不是静态内容站，而是可扩展的历史人物引擎</strong>
+          <p>文本采样、实时肖像、展陈切换都已具备产品雏形，后续可继续接人物库、专题页与授权内容。</p>
+        </article>
+        <article className="signal-card">
+          <span className="meta-label">market signal</span>
+          <strong>面向博物馆、教育、文旅、品牌联名与线上展览</strong>
+          <p>它既能做馆内互动装置，也能做传播型网页、课程产品与文化 IP 的数字入口。</p>
+        </article>
+        <article className="signal-card">
+          <span className="meta-label">attention signal</span>
+          <strong>第一屏就该让人停住，而不是像在看 Figma 线框稿</strong>
+          <p>首屏必须先给冲击、再给价值、最后给扩张想象，这才是 showcase，而不是自我说明书。</p>
+        </article>
+      </section>
+
+      <section id="demo" className="hero-grid">
+        <div className="hero-copy">
+          <p className="eyebrow">live demo / {mode.title}</p>
+          <h2>{figure.name}</h2>
+          <p className="hero-subtitle">{figure.subtitle}</p>
+          <p className="hero-summary">{figure.summary}</p>
+          <blockquote>{figure.quote}</blockquote>
+          <div className="tag-row">
+            {figure.tags.map((tag) => (
+              <span key={tag}>{tag}</span>
+            ))}
+          </div>
+          <div className="hero-proof-list">
+            <div>
+              <span className="meta-label">current mode</span>
+              <strong>{mode.english}</strong>
+            </div>
+            <div>
+              <span className="meta-label">experience goal</span>
+              <strong>{mode.mood}</strong>
+            </div>
+          </div>
+        </div>
+
+        <div className="hero-stage-shell">
+          <div className="stage-topline">
+            <span>live portrait engine / {mode.english}</span>
+            <span>{figure.dynasty} · {figure.years}</span>
+          </div>
+          <PortraitScene figure={figure} mode={mode.id} />
+          <div className="stage-bottomline">
+            <span>{mode.tech}</span>
+            <span>reference set / {mode.refs.join(' · ')}</span>
+          </div>
+        </div>
+      </section>
+
+      <section className="control-rail showcase-rail">
         <div className="rail-block">
-          <span className="rail-label">展陈单元</span>
+          <span className="rail-label">experience systems</span>
           <div className="mode-tabs">
             {modes.map((item) => (
               <button
@@ -519,7 +578,7 @@ function App() {
         </div>
 
         <div className="rail-block">
-          <span className="rail-label">馆藏人物</span>
+          <span className="rail-label">character lineup</span>
           <div className="figure-tabs">
             {figures.map((item) => (
               <button
@@ -537,74 +596,47 @@ function App() {
         </div>
       </section>
 
-      <section className="hero-grid">
-        <div className="hero-copy">
-          <p className="eyebrow">当前展项 / {mode.title}</p>
-          <h2>{figure.name}</h2>
-          <p className="hero-subtitle">{figure.subtitle}</p>
-          <p className="hero-summary">{figure.summary}</p>
-          <blockquote>{figure.quote}</blockquote>
-          <div className="tag-row">
-            {figure.tags.map((tag) => (
-              <span key={tag}>{tag}</span>
-            ))}
-          </div>
-        </div>
-
-        <div className="hero-stage-shell">
-          <div className="stage-topline">
-            <span>gallery engine / {mode.english}</span>
-            <span>{figure.dynasty} · {figure.years}</span>
-          </div>
-          <PortraitScene figure={figure} mode={mode.id} />
-          <div className="stage-bottomline">
-            <span>{mode.tech}</span>
-            <span>reference set / {mode.refs.join(' · ')}</span>
-          </div>
-        </div>
-      </section>
-
-      <section className="meta-grid">
+      <section className="meta-grid investor-grid">
         <article className="meta-card">
-          <span className="meta-label">展项说明</span>
-          <strong>{mode.mood}</strong>
-          <p>每个单元都不是换一种皮肤，而是在改变“历史人物如何被读取”的方式。</p>
+          <span className="meta-label">why users care</span>
+          <strong>因为它把“读历史”改成了“进入一个会动的人物现场”。</strong>
+          <p>用户不是在看资料卡，而是在看人物如何由诗句、史料与评价被重新生成。</p>
         </article>
         <article className="meta-card">
-          <span className="meta-label">策展注释</span>
-          <strong>{figure.curator}</strong>
-          <p>页面正文不再充当主角，它只负责给观看提供尺度与注解。</p>
+          <span className="meta-label">why partners care</span>
+          <strong>因为它天然适合做活动页、馆展屏、课程封面与文化传播入口。</strong>
+          <p>同一套引擎可以切人物、切题材、切视觉语言，适配不同合作场景。</p>
         </article>
         <article className="meta-card">
-          <span className="meta-label">动画系统</span>
-          <strong>GSAP + ScrollTrigger</strong>
-          <p>入场、切换、浮现与停顿共同组成浏览节奏，尽量让它更像走进展厅，而不是切 tab。</p>
+          <span className="meta-label">why investors care</span>
+          <strong>因为这不是单页审美，而是一个可复制到更多内容资产上的展示操作系统。</strong>
+          <p>真正有价值的不是某个苏轼页面，而是这套把文本资产转成可观看资产的能力。</p>
         </article>
       </section>
 
-      <section className="essay-grid">
-        <article className="essay-card">
-          <span className="meta-label">策展说明</span>
-          <strong>这座站点真正要做的，不是“展示技术”，而是重构观看关系。</strong>
+      <section id="thesis" className="essay-grid thesis-grid">
+        <article className="essay-card thesis-card">
+          <span className="meta-label">investment thesis</span>
+          <strong>文化内容网站大多在卖信息，我们要卖的是“值得被围观的观看体验”。</strong>
           <p>
-            史料、诗句、诏令、争议和人物评价，本来都分散在不同文本里。我们把它们重新抽样、分层、聚合，
-            不是为了把文本变成装饰，而是为了让人物的“被书写方式”直接成为肖像的一部分。
+            如果第一屏不能让人停住，就没有传播；如果没有传播，就没有合作想象；如果没有合作想象，
+            投资人看到的就只是一页审美练习。这个项目需要首先证明：历史内容也能拥有像科技产品一样强的首屏抓力。
           </p>
         </article>
-        <article className="essay-card">
-          <span className="meta-label">馆藏方法</span>
-          <strong>文本 / 算法 / 肖像</strong>
+        <article className="essay-card thesis-card">
+          <span className="meta-label">deployment paths</span>
+          <strong>馆内互动、线上专题、教育产品、文化 IP 联名</strong>
           <p>
-            文本提供颗粒，算法决定组织方式，肖像承担最终可见的情绪与秩序。页面应该像展签与装置并存：
-            一部分负责说明，一部分负责让人停下来观看。
+            一套实时肖像引擎，可以往上长出人物系列、主题策展、数据看板、讲解音频与授权衍生页。
+            投资逻辑不在“单个网页”，而在这套展示能力能否复制到更多内容场景。
           </p>
         </article>
       </section>
 
       <section className="collection-section">
         <div className="section-heading">
-          <span className="rail-label">馆藏目录</span>
-          <h3>人物不应只是选项，而应像正在展出的藏品。</h3>
+          <span className="rail-label">launch collection</span>
+          <h3>首发阵容不该像菜单，而该像一组可持续扩张的文化 IP 样本。</h3>
         </div>
         <div className="collection-grid">
           {figures.map((item) => (
@@ -620,21 +652,21 @@ function App() {
 
       <section className="method-strip">
         <div className="section-heading">
-          <span className="rail-label">method</span>
-          <h3>技术不该站在台前，但必须让人感到它确实存在。</h3>
+          <span className="rail-label">engine advantages</span>
+          <h3>真正该被看见的，不是“我们会做网页”，而是这套系统的复制能力。</h3>
         </div>
         <div className="method-grid">
           <article className="method-card">
-            <span className="meta-label">text mask sampling</span>
-            <p>先把词语画成可采样的形体，再把它们送入点云，而不是用 CSS 拼出一张假画像。</p>
+            <span className="meta-label">content to form</span>
+            <p>把词语本身变成肖像材料，意味着后续接入新人物、新文本时，不需要重做整套视觉逻辑。</p>
           </article>
           <article className="method-card">
-            <span className="meta-label">shader-led portrait</span>
-            <p>扫描、聚散、呼吸和错位都交给实时图形层，让人物保持“还在被组织”的状态。</p>
+            <span className="meta-label">real-time spectacle</span>
+            <p>shader 与点云让首屏具备真正的“停留价值”，而不是依赖营销文案硬撑高级感。</p>
           </article>
           <article className="method-card">
-            <span className="meta-label">scroll narrative</span>
-            <p>滚动不是读说明书，而是进入不同的展厅节奏：停顿、靠近、切换、再回看。</p>
+            <span className="meta-label">commercial scaling</span>
+            <p>同一底层可以扩到专题馆、品牌联名、教学交互与线下大屏，具备继续产品化的空间。</p>
           </article>
         </div>
       </section>
